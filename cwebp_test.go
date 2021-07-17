@@ -1,49 +1,18 @@
 package webpbin
 
 import (
-	"net/http"
-	"os"
-	"io"
-	"github.com/stretchr/testify/assert"
-	"testing"
 	"image/jpeg"
+	"os"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 	"golang.org/x/image/webp"
-	"fmt"
 )
 
 func init() {
 	DetectUnsupportedPlatforms()
 	downloadFile("https://upload.wikimedia.org/wikipedia/commons/e/e3/Avola-Syracuse-Sicilia-Italy_-_Creative_Commons_by_gnuckx_%283858115914%29.jpg", "source.jpg")
 	downloadFile("https://upload.wikimedia.org/wikipedia/commons/d/d1/Snail_in_Forest_on_Lichtscheid_2.webp", "source.webp")
-}
-
-func downloadFile(url, target string) {
-	_, err := os.Stat(target)
-
-	if err != nil {
-		resp, err := http.Get(url)
-
-		if err != nil {
-			fmt.Printf("Error while downloading test image: %v\n", err)
-			panic(err)
-		}
-
-		defer resp.Body.Close()
-
-		f, err := os.Create(target)
-
-		if err != nil {
-			panic(err)
-		}
-
-		defer f.Close()
-
-		_, err = io.Copy(f, resp.Body)
-
-		if err != nil {
-			panic(err)
-		}
-	}
 }
 
 func TestEncodeImage(t *testing.T) {
