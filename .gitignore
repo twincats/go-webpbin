@@ -1,5 +1,7 @@
+.bin
 .idea
 *.iml
 vendor
+source.gif
 source.jpg
 source.webp
