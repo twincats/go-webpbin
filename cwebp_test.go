@@ -68,7 +68,7 @@ func TestVersionCWebP(t *testing.T) {
 	assert.Nil(t, err)
 
 	if _, ok := os.LookupEnv("DOCKER_ARM_TEST"); !ok {
-		assert.Equal(t, "0.6.0", r)
+		assert.Equal(t, "1.2.1", r)
 	}
 }
 
@@ -84,4 +84,19 @@ func validateWebp(t *testing.T) {
 	imgTarget, err := webp.Decode(fTarget)
 	assert.Nil(t, err)
 	assert.Equal(t, imgSource.Bounds(), imgTarget.Bounds())
+}
+
+func TestResizeCWebp(t *testing.T) {
+	c := NewCWebP()
+	c.InputFile("source.jpg")
+	c.OutputFile("target.webp")
+	c.Resize(100, 0)
+	err := c.Run()
+	assert.Nil(t, err)
+	f, err := os.Open("target.webp")
+	assert.Nil(t, err)
+	i, err := webp.DecodeConfig(f)
+	assert.Nil(t, err)
+	assert.Equal(t, 100, i.Width)
+
 }
