@@ -130,6 +130,10 @@ func (c *CWebP) Run() error {
 		c.Arg("-crop", fmt.Sprintf("%d", c.crop.x), fmt.Sprintf("%d", c.crop.y), fmt.Sprintf("%d", c.crop.width), fmt.Sprintf("%d", c.crop.height))
 	}
 
+	if c.resize != nil {
+		c.Arg("-resize", fmt.Sprintf("%d", c.resize.width), fmt.Sprintf("%d", c.resize.height))
+	}
+
 	output, err := c.getOutput()
 
 	if err != nil {
@@ -146,10 +150,6 @@ func (c *CWebP) Run() error {
 
 	if c.output != nil {
 		c.SetStdOut(c.output)
-	}
-
-	if c.resize != nil {
-		c.Arg("-resize", fmt.Sprintf("%d", c.resize.width), fmt.Sprintf("%d", c.resize.height))
 	}
 
 	err = c.BinWrapper.Run()
@@ -184,7 +184,7 @@ func (c *CWebP) setInput() error {
 	} else if c.inputFile != "" {
 		c.Arg(c.inputFile)
 	} else {
-		return errors.New("Undefined input")
+		return errors.New("undefined input")
 	}
 
 	return nil
@@ -196,6 +196,6 @@ func (c *CWebP) getOutput() (string, error) {
 	} else if c.outputFile != "" {
 		return c.outputFile, nil
 	} else {
-		return "", errors.New("Undefined output")
+		return "", errors.New("undefined output")
 	}
 }
