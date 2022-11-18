@@ -7,17 +7,17 @@ WebP Encoder/Decoder for Golang based on official libwebp distribution
 
 ## Install
 
-```go get -u github.com/twincats/go-webpbin```
+`go get -u github.com/twincats/go-webpbin`
 
 ## Available env
+
 All env can be override with option functions.
 
-|Name|Default|Desscription|
-|-----|------|------------|
-|SKIP_DOWNLOAD|`false`|Download webp bin automatically. Since there is no precompiled file for alpine, **THE SKIP_DOWNLOAD MUST BE true AND ASSIGN A SOURCE FOR RUN.**|
-|VENDOR_PATH|`.bin/webp`|When there is no lib within and `SKIP_DOWNLAOD` is not `true`, it'll be downloaded.|
-|LIBWEBP_VERSION|`1.2.1`|The latest version for now. (2021/10/08)|
-
+| Name            | Default     | Desscription                                                                                                                                    |
+| --------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| SKIP_DOWNLOAD   | `false`     | Download webp bin automatically. Since there is no precompiled file for alpine, **THE SKIP_DOWNLOAD MUST BE true AND ASSIGN A SOURCE FOR RUN.** |
+| VENDOR_PATH     | `.bin/webp` | When there is no lib within and `SKIP_DOWNLAOD` is not `true`, it'll be downloaded.                                                             |
+| LIBWEBP_VERSION | `1.2.4`     | The latest version for now. (2021/10/08)                                                                                                        |
 
 ## Example of usage
 
@@ -67,7 +67,7 @@ func main() {
 
 ## CWebP
 
-CWebP is a wrapper for *cwebp* command line tool.
+CWebP is a wrapper for _cwebp_ command line tool.
 
 Example to convert image.png to image.webp:
 
@@ -81,7 +81,7 @@ err := webpbin.NewCWebP().
 
 ## DWebP
 
-DWebP is a wrapper for *dwebp* command line tool.
+DWebP is a wrapper for _dwebp_ command line tool.
 
 Example to convert image.webp to image.png:
 
@@ -94,7 +94,7 @@ err := webpbin.NewDWebP().
 
 ## libwebp distribution
 
-Under the hood library uses [official libwebp distribution](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/index.html), so if you're going to use it on not supported platform (arm or alpine), you need to build libwebp from sources and set ```SKIP_DOWNLOAD=true```.
+Under the hood library uses [official libwebp distribution](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/index.html), so if you're going to use it on not supported platform (arm or alpine), you need to build libwebp from sources and set `SKIP_DOWNLOAD=true`.
 
 Snippet to build libweb on alpine:
 

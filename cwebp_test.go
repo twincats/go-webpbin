@@ -68,7 +68,7 @@ func TestVersionCWebP(t *testing.T) {
 	assert.Nil(t, err)
 
 	if _, ok := os.LookupEnv("DOCKER_ARM_TEST"); !ok {
-		assert.Equal(t, "1.2.1", r)
+		assert.Equal(t, "1.2.4", r)
 	}
 }
 
